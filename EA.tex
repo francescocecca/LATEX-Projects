@@ -165,6 +165,69 @@ La stabilità può essere studiata con il margine di fase attraverso la \textbf{
 \end{equation}
 
 \newpage
+\section{Amplificatori Operazionali}
+\textbf{Zone di funzionamento}
+\begin{enumerate}
+    \item Zona lineare: $v_{+}=v_{-}$
+    \item Zona di saturazione positiva: $v_{o}=V_{DD}$ (valida solo se $v_{+}>v_{-}$)
+    \item Zona di saturazione negativa: $v_{o}=-V_{DD}$ (valida solo se $v_{+}<v_{-}$)
+    \end{enumerate}
+\begin{center}
+    \includegraphics[scale=0.7]{Opamp.png}
+\end{center}
+\subsection{Modello di Gilbert}
+\subsection{Schema Semplificato}
+\subsection{Non Idealità}
+\textbf{Correnti di polarizzazione (DC)}\\
+A causa della $R_{i}=\infty$, i morsetti hanno corrente idelmente nulla, ma questa è un'approssimazione, infatti lo stadio d'IN di un OPAMP è costituito da 2 transistor (è un differenziale) e quindi da 2 MOS/BJT, le quali basi assorbono un coorente di polarizzazione $I_{B}$.
+Questa corrente di polarizzazione è data dalle correnti di bias:
+\begin{equation}
+    I_{B}=\frac{I_{B_{+}}+I_{B_{-}}}{2}
+\end{equation}
+La corrente di offset, invece, sarà la differenza delle correnti di bias:
+\begin{equation}
+    I_{B_{+}}-I_{B_{-}}
+\end{equation}
+\textbf{Slew Rate (AC)}\\
+L'OUT di un OPAMP ideale può variare istantaneamente , passando da un valore all'altro in un tempo nullo.\\
+L'OUT di un OPAMP reale, invece, varierà con velocità limitata (SR).\\
+La $V_{OUT}$ cresce o diminuisce con pendenza sempre minore dello Slow Rate.
+\subsection{Effetti delle non idealità}
+\subsection{Circuiti con OPAMP}
+\textbf{Integratore}\\
+Il circuito ha la stessa topologia dell'amplificatore invertente, quindi:
+\begin{equation}
+    A_{v}=\frac{v_{o}}{v_{i}}(s)=-\frac{Z_{2}(s)}{Z_{1}(s)}=-\frac{\frac{1}{sC}}{R}=-\frac{1}{sRC}
+\end{equation}
+o nel dominio del tempo:
+\begin{equation}
+    v_{o}(t)=-\frac{1}{RC}\int_{0}^{t}v_{i}(\tau)d\tau
+\end{equation}
+Come si può notare, questo circuito ha guadagno infinito in DC. Nel dominio del tempo, questo si traduce nel fatto che l'uscita aumenta indefinitivamente (fino alla saturazione) se l'ingresso ha una componente continua non nulla.\\
+Questo è un problema perchè qualsiasi componente continua indesiderata nell'ingresso, o un offset nel circuito stesso, porta in breve tempo l'OPAMP alla saturazione.
+Per ovviare a ciò, si usa un filtro passa basso con frequenza di taglio non nulla:
+\begin{equation}
+A_{v}=-\frac{\frac{R_{1}}{1+sR_{1}C}}{R_{1}}=-\frac{R_{1}}{R}\frac{1}{1+sR_{1}C}
+\end{equation}
+Quindi questa f.d.t. ha un polo a $\omega_{p}=\frac{1}{R_{1}C}$, invece che nell'origine, e questo permette un guadagno finito in DC \\\\
+\textbf{Derivatore}\\
+Anche questo circuito ha la stessa topologia dell'amplificatore invertente:
+\begin{equation}
+    \frac{v_{o}}{v_{i}}(s)=-\frac{Z_{2}(s)}{Z_{1}(s)}=-\frac{R}{\frac{1}{sC}}=-sRC
+\end{equation}
+oppure nel dominio del tempo:
+\begin{equation}
+    v_{o}(t)=-\tau\frac{dv_{i}}{dt}
+\end{equation}
+Il guadagno di questo circuito, tende all'infinito all'aumentare della frequenza, rappresentando il caso duale dell'integratore, il quale tendeva all'infinito al tendere della frequenza a zero.\\
+In questo caso , il guadagno sempre più alto porta ad amplificare anche segnali non voluti, anche il rumore, tanto da poter saturare l'OPAMP.\\
+Il rimedio a questo può essere trovato considerando che il guadagno aumenta perchè l'impedenza della C d'ingresso diminuisce all'aumentare della frequenza, tendendo idealmente a zero per frequenze infinite.\\
+Porre una R in serie al C, pone un limite alla diminuzione del guadagno dell'OPAMP invertente:
+\begin{equation}
+    {v_{o}}{v_{i}}(s)=-\frac{R}{\frac{1}{sC}+R_{1}}=-\frac{sRC}{1+sR_{1}C}
+\end{equation}
+
+\newpage
 \section{Stadi di Uscita}
 
 \textbf{Classe A - Push Pull}\\
