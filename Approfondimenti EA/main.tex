@@ -177,6 +177,7 @@ La stabilità può essere studiata con il margine di fase attraverso la \textbf{
 \end{center}
 \subsection{Modello di Gilbert}
 \subsection{Schema Semplificato}
+<<<<<<< HEAD:Approfondimenti EA/main.tex
 Il modello semplificato è diviso in 3 stadi:
 \begin{enumerate}
     \item Input Stage: Amplificatore differenziale con carico attivo (specchio di corrente), dato che l'ingresso differenziale.\\
@@ -189,6 +190,8 @@ Il modello semplificato è diviso in 3 stadi:
 \begin{center}
     \includegraphics[scale=0.4]{Modello Semplificato.png}
 \end{center}
+=======
+>>>>>>> 3928d4e5387893a5172a57f83874a1cea720042d:EA.tex
 \subsection{Non Idealità}
 \textbf{Correnti di polarizzazione (DC)}\\
 A causa della $R_{i}=\infty$, i morsetti hanno corrente idelmente nulla, ma questa è un'approssimazione, infatti lo stadio d'IN di un OPAMP è costituito da 2 transistor (è un differenziale) e quindi da 2 MOS/BJT, le quali basi assorbono un coorente di polarizzazione $I_{B}$.
@@ -204,6 +207,10 @@ La corrente di offset, invece, sarà la differenza delle correnti di bias:
 L'OUT di un OPAMP ideale può variare istantaneamente , passando da un valore all'altro in un tempo nullo.\\
 L'OUT di un OPAMP reale, invece, varierà con velocità limitata (SR).\\
 La $V_{OUT}$ cresce o diminuisce con pendenza sempre minore dello Slow Rate.
+<<<<<<< HEAD:Approfondimenti EA/main.tex
+=======
+\subsection{Effetti delle non idealità}
+>>>>>>> 3928d4e5387893a5172a57f83874a1cea720042d:EA.tex
 \subsection{Circuiti con OPAMP}
 \textbf{Integratore}\\
 Il circuito ha la stessa topologia dell'amplificatore invertente, quindi:
@@ -240,6 +247,46 @@ Porre una R in serie al C, pone un limite alla diminuzione del guadagno dell'OPA
 
 \newpage
 \section{Stadi di Uscita}
+<<<<<<< HEAD:Approfondimenti EA/main.tex
+=======
+
+\textbf{Classe A - Push Pull}\\
+Al posto del generatore di corrente ci metto 2 transinstor complementari, npn e pnp.\\
+$V_{BB}$ è una tensione costante DC \\
+Facendo la KVL ottengo:\\
+\begin{equation}
+    v_{BE}+v_{EB}=V_{BB}
+\end{equation}
+Dal momento che la somma è costante, se aumento $v_{BE}$, dovrò diminuire $v_{EB}$ e viceversa.\\
+Facendo ora i piccoli segnali, ottengo: \\
+\begin{equation}
+    v_{be}+v_{eb}=0
+\end{equation}
+Quindi se la corrente di collettore, aumenta, perchè aumenta la $v_{BE}$, diminuirà la $v_{EB}$. Quindi le due correnti procedono in opposizione di fase, entrambe con un valor medio sempre diverso da 0 !!! (vedi figura)\\
+Se mi vado a calcolare il rendimento, sarà uguale a quello di prima; cambierà il rendimento massimo.\\
+\begin{equation}
+    \eta=\frac{\hat{v_{O}}^2}{2R_{L}}\frac{1}{2V_{DD}I_{C}}
+\end{equation}
+Analizzando il nodo, otterrò $i_{L}(t)=i_{C_{n}}-i_{C_{p}}$, ma come ampiezza, otterrò la somma delle 2 ampiezze: 
+\begin{equation}
+    \hat{i_{L}}=\hat{i_{C_{n}}}+\hat{i_{C_{p}}}=2\hat{i_{C}}
+\end{equation}
+\begin{equation}
+    \hat{v_{O}}=\hat{i_{L}}R_{L}=2\hat{i_{C}}R_{L}
+\end{equation}
+La minima $I_{C}$ necessaria al mantenimento del transistor nella regione attiva dovrà essere:
+\begin{equation}
+    I_{C}=\hat{i_{C}}
+\end{equation}
+Sostituendo l'equazione trovata prima, ottengo:
+\begin{equation}
+    I_{C}=\hat{i_{C}}=\frac{V_{DD}}{2R_{L}}
+\end{equation}
+Mi basta sostituire e il risultato sara che $ \eta=50\% $.
+\begin{center}
+    \includegraphics[scale=0.6]{Exit.png}
+\end{center}
+>>>>>>> 3928d4e5387893a5172a57f83874a1cea720042d:EA.tex
 
 \textbf{Classe A - Push Pull}\\
 Al posto del generatore di corrente ci metto 2 transinstor complementari, npn e pnp.\\
