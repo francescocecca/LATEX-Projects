@@ -165,6 +165,43 @@ La stabilità può essere studiata con il margine di fase attraverso la \textbf{
 \end{equation}
 
 \newpage
-\section{Amplificatori Operazionali}
+\section{Stadi di Uscita}
+
+\textbf{Classe A - Push Pull}\\
+Al posto del generatore di corrente ci metto 2 transinstor complementari, npn e pnp.\\
+$V_{BB}$ è una tensione costante DC \\
+Facendo la KVL ottengo:\\
+\begin{equation}
+    v_{BE}+v_{EB}=V_{BB}
+\end{equation}
+Dal momento che la somma è costante, se aumento $v_{BE}$, dovrò diminuire $v_{EB}$ e viceversa.\\
+Facendo ora i piccoli segnali, ottengo: \\
+\begin{equation}
+    v_{be}+v_{eb}=0
+\end{equation}
+Quindi se la corrente di collettore, aumenta, perchè aumenta la $v_{BE}$, diminuirà la $v_{EB}$. Quindi le due correnti procedono in opposizione di fase, entrambe con un valor medio sempre diverso da 0 !!! (vedi figura)\\
+Se mi vado a calcolare il rendimento, sarà uguale a quello di prima; cambierà il rendimento massimo.\\
+\begin{equation}
+    \eta=\frac{\hat{v_{O}}^2}{2R_{L}}\frac{1}{2V_{DD}I_{C}}
+\end{equation}
+Analizzando il nodo, otterrò $i_{L}(t)=i_{C_{n}}-i_{C_{p}}$, ma come ampiezza, otterrò la somma delle 2 ampiezze: 
+\begin{equation}
+    \hat{i_{L}}=\hat{i_{C_{n}}}+\hat{i_{C_{p}}}=2\hat{i_{C}}
+\end{equation}
+\begin{equation}
+    \hat{v_{O}}=\hat{i_{L}}R_{L}=2\hat{i_{C}}R_{L}
+\end{equation}
+La minima $I_{C}$ necessaria al mantenimento del transistor nella regione attiva dovrà essere:
+\begin{equation}
+    I_{C}=\hat{i_{C}}
+\end{equation}
+Sostituendo l'equazione trovata prima, ottengo:
+\begin{equation}
+    I_{C}=\hat{i_{C}}=\frac{V_{DD}}{2R_{L}}
+\end{equation}
+Mi basta sostituire e il risultato sara che $ \eta=50\% $.
+\begin{center}
+    \includegraphics[scale=0.6]{Exit.png}
+\end{center}
 
 \end{document}
