@@ -61,10 +61,6 @@ $i_{0}=i_{c_{4}}-i_{c_{2}}=i_{c_{3}}+i_{c_{1}}\simeq2i_{c_{1}}=g_{m}v_{d}$ \\
     $2i_{c_{1}}=g_{m}v_{d}$  e  $\frac{v_{o}}{v_{d}}=g_{m}R_{L}$
 \end{center}
 
-\begin{center}
-    \includegraphics{image.png}
-\end{center}
-
 \newpage
 
 \section{Comportamento in Frequenza}
@@ -102,7 +98,12 @@ Quindi, avere costanti di tempo grandi, comporta una frequenza di taglio superio
 \textbf{Collettore Comune - Emettitore Comune}\\
 Sostituisco la $R_{S}$ di EC con la R d'uscita del CC.
 Posso stare tranquillo che $\tau$ addizionali non vanificheranno il vantaggio ottenuto dalla diminuzione della $R_{i}$, data la alta frequenza di taglio della configurazione.\\
-Il guadagno totale di tensione sarà circa uguale al guadagno di EC $A_{v_{EC}}$  dato che il CC ha $A_{v}=1$ se caricato da una R molto alta.
+Il guadagno totale di tensione sarà circa uguale al guadagno di EC $A_{v_{EC}}$  dato che il CC ha $A_{v}=1$ se caricato da una R molto alta.\\\\
+\textbf{Figura relativa ai problemi negli specchi di corrente:}
+\vspace{0.8mm}
+\begin{center}
+    \includegraphics[scale=0.8]{Mosfet.png}
+\end{center}
 
 \newpage
 \section{Retroazione}
@@ -176,8 +177,11 @@ La stabilità può essere studiata con il margine di fase attraverso la \textbf{
     \includegraphics[scale=0.7]{Opamp.png}
 \end{center}
 \subsection{Modello di Gilbert}
+L'idealità dell'OPAMP,, cioè del nullore, si può collegare con la figura di merito del $GBW=A_{f}\omega_{H_{f}}$, cioè guadagno a ciclo chiuso per banda a ciclo chiuso.\\
+Il GBW si può usare in sede di progetto per ottenere la banda a ciclo chiuso, dunque si introduce quello che è il modello di Gilbert, cioè un modello che si basa sul rapporto tra la $\omega_{t}$ (pulsazione di attraversamento in 0 per la stabilità -20dB/dec) e il polo in $s=0$.\\
+Se si prende un qualunque diagramma di bodedi un amplificatore, in base a dove si prova il polo farà scendere il guadagno , ma se il polo lo si sposta sempre verso sx, il guadagno aumenterà, tendendo ad infinito.\\
+Perciò si dovrà avere un polo in 0 senza andare a toccare la $\omega_{t}$, così da mantenere anche un guadagno infinito.
 \subsection{Schema Semplificato}
-<<<<<<< HEAD:Approfondimenti EA/main.tex
 Il modello semplificato è diviso in 3 stadi:
 \begin{enumerate}
     \item Input Stage: Amplificatore differenziale con carico attivo (specchio di corrente), dato che l'ingresso differenziale.\\
@@ -190,8 +194,6 @@ Il modello semplificato è diviso in 3 stadi:
 \begin{center}
     \includegraphics[scale=0.4]{Modello Semplificato.png}
 \end{center}
-=======
->>>>>>> 3928d4e5387893a5172a57f83874a1cea720042d:EA.tex
 \subsection{Non Idealità}
 \textbf{Correnti di polarizzazione (DC)}\\
 A causa della $R_{i}=\infty$, i morsetti hanno corrente idelmente nulla, ma questa è un'approssimazione, infatti lo stadio d'IN di un OPAMP è costituito da 2 transistor (è un differenziale) e quindi da 2 MOS/BJT, le quali basi assorbono un coorente di polarizzazione $I_{B}$.
@@ -207,10 +209,6 @@ La corrente di offset, invece, sarà la differenza delle correnti di bias:
 L'OUT di un OPAMP ideale può variare istantaneamente , passando da un valore all'altro in un tempo nullo.\\
 L'OUT di un OPAMP reale, invece, varierà con velocità limitata (SR).\\
 La $V_{OUT}$ cresce o diminuisce con pendenza sempre minore dello Slow Rate.
-<<<<<<< HEAD:Approfondimenti EA/main.tex
-=======
-\subsection{Effetti delle non idealità}
->>>>>>> 3928d4e5387893a5172a57f83874a1cea720042d:EA.tex
 \subsection{Circuiti con OPAMP}
 \textbf{Integratore}\\
 Il circuito ha la stessa topologia dell'amplificatore invertente, quindi:
@@ -244,50 +242,115 @@ Porre una R in serie al C, pone un limite alla diminuzione del guadagno dell'OPA
 \begin{equation}
     {v_{o}}{v_{i}}(s)=-\frac{R}{\frac{1}{sC}+R_{1}}=-\frac{sRC}{1+sR_{1}C}
 \end{equation}
-
+\newpage
+\section{Oscillatori}
+\textbf{Oscillatore di Gouriet-Clapp}\\
+E' una variante dell'oscillatore di Colpitts in cui all'induttore è aggiunto in serie un condensatore.\\
+Questo permette di modificare la frequenza di oscillazione mantenendo inalterato l'ammontare della retroazione, stabilita dal partitore fra le altre 2 capacità.\\
+Questo circuito LC serie, ha un comportamento capacitivo (reattanza minore di zero) per pulsazioni minori della sua risonanza.\\
+Quindi tale circuito risuonerà con i condensatori, $C_{1}$ e $C_{2}$, nell'intervallo di frequenze in cui manifesta un comportamento induttivo.\\
+Per questo motivo è conveniente rappresentare il circuito LC serie come un'induttanza dipendente dall frequenza, da determinare calcolando la seguente impedenza serie:
+\begin{equation}
+    Z_{S}=sL+\frac{1}{sC_{0}}=s(L+\frac{1}{s^2C_{0}})=sL_{eq}(\omega)
+\end{equation}
+Ci siamo ricondotti all'oscillatore di Colpitts, la cui pulsazione di oscillazione è pari a:
+\begin{equation}
+    \omega_{0}^2=\frac{1}{L_{eq}C_{S}}=\frac{1}{(L-\frac{1}{\omega_{0}^2})C_{S}}
+\end{equation}
+Che può essere scritta come:
+\begin{equation}
+     \omega_{0}^2L-\frac{1}{C_{0}}=\frac{1}{C_{S}}=\frac{1}{C_{1}}+\frac{1}{C_{2}}
+\end{equation}
+Ovvero
+\begin{equation}
+    \omega_{0}=\sqrt{\frac{1}{L}(\frac{1}{C_{0}}+\frac{1}{C_{1}}+\frac{1}{C_{2}})}
+\end{equation}
+Cioè la frequenza di oscillazione è determinata da L e dalla serie delle tre capacità.\\\\
+\textbf{Oscillatori al Quarzo}\\
+Analizzo l'impedenza RLC:
+\begin{equation}
+    Z(s)=\frac{s^2+s\frac{R}{L}+\omega_{S}^2}{sC_{P}(s^2+s\frac{R}{L}+\omega_{P}^2)}=\frac{s^2+2\zeta\omega_{s}s+\omega_{s}^2}{sC_{P}(s^2+2\zeta\omega_{s}s+\omega_{P}^2)}
+\end{equation}
+dove le due pulsazioni valgoni rispettivamente:
+\begin{equation}
+    \omega_{S}=\frac{1}{\sqrt{LC_{S}}}
+\end{equation}
+\begin{equation}
+    \omega_{P}=\frac{1}{\sqrt{L\frac{C_{S}C_{P}}{C_{S}+C_{P}}}}
+\end{equation}
+\newpage
+\noindent
+Inizio a studiare la fase:\\
+Siccome so che la $\zeta$ è molto bassa, avrò 2 zeri complessi coniugati alla frequenza di risonanza $\omega_{S}$, 2 poli complessi e coniugati alla frequenza $\omega_{P}$, ma $\omega_{S}\simeq\omega_{P}$ e un polo in zero (DC).\\
+Quindi per qualsiasi frequenza maggiore di 0, avrò una fase pari a $\phi=-\frac{\pi}{2}$.\\
+Tra gli zeri e i poli, chi è più bassa (chi ha prima effetto)? La serie tra $C_{P}$ e $C_{S}$ è minore di $C_{S}$, quindi la $\omega_{P}$ sarà più alta.\\
+Arriveranno, quindi prima gli zeri complessi e coniugati, con un'attenuazione bassa (variazione veloce), i quali mi faranno ruotare la fase di $\pi$.
+Poi arrivano i poli, con le stesse caratteristiche, quindi altrettanto velocemente i poli mi riportano la fase a $-\frac{\pi}{2}$.
+Quello che mi interessa di più è che la fase tra $\omega_{S}$ e $\omega_{P}$, la fase vale $\frac{\pi}{2}$, proprio come un INDUTTORE !!!
+\begin{center}
+    \includegraphics[scale=0.8]{Quarzo.png}
+\end{center}
+\vspace{0.4mm}
+\textbf{Oscillatori di Rilassamento}\\
+Per ottenere un circuito con punto di equilibrio instabile, serve un circuito generico caricato da un bipolo non lineare, con un tratto a $R<0$ e 2 tratti a $R>0$
+\\\\
+\textbf{Oscillatori di Rilassamento con Bipoli Comandati in Corrente}\\
+Supponiamo di avere un bipolo che manifesta un tratto a $R<0$
+\begin{equation}
+    \frac{di}{dt}=-\frac{1}{Cf'(i)}(i-I_{0})
+\end{equation}
+Voglio ora andare a studiare il segno della derivata, il quale è composto da 3 parti:
+\begin{enumerate}
+    \item Il segno $-$
+    \item Il segno di $f'(i)$
+    \item Il segno di $(i-I_{0})$
+\end{enumerate}
+\newpage
+I punti da prendere in considerazione sono $i_{12}$, $I_{0}$ e $i_{21}$:
+\begin{enumerate}
+    \item Per \textbf{$i<i_{12}$} ho $f'(i)>0$ e $i-I_{0}<0$ quindi $\frac{di}{dt}>0$ (la corrente aumenterà)
+    \item Per \textbf{$i_{12}<i<I_{0}$} ho $f'(i)<0$ e $i-I_{0}<0$ quindi $\frac{di}{dt}<0$
+      \item Per \textbf{$I_{0}<i<i_{21}$} ho $f'(i)<0$ e $i-I_{0}>0$ quindi $\frac{di}{dt}>0$
+      \item Per \textbf{$i>i_{21}$} ho $f'(i)>0$ e $i-I_{0}>0$ quindi $\frac{di}{dt}<0$ (la corrente diminuirà)
+\end{enumerate} 
+Le frecce mi indicano come vengono percorse le caratteristiche nel tempo.\\
+In DC, $i=I_{0}$ è il punto di equilibrio. Anche una minima perturbazione (rumore) porterà la corrente ad assumere valore maggiori o minori del punto di equilibrio (instabile).\\
+Partendo, ora, dall'origine, la $I_{0}$ mi inizia a caricare C finchè la tensione non varrà $V_{2}$ (es. tensione che fa accendere la lampadina). Da $V_{2}$ faccio un salto al secondo tratto a resistenza positiva, perchè non posso scendere sul tratto a resistenza negativa.\\
+Occhio però, non è un salto istantanea, perchè $i_(t)$ deve essere continua.\\
+Ora il consensatore dovrà scaricarsi, quindi scenderò fino a $V_{1}$ e salto sul primo tratto.\\
+Mi ritroverò come prima, in un ciclo limite!!!
+\begin{center}
+    \includegraphics[]{Derivata.png}
+\end{center}
+Abbiamo studiato il segno della derivata, ora la risolvo per trovare la i in funzione del tempo:\\
+Faccio un cambio di variabile: $i'=i-I_{0}$\\
+\begin{equation}
+    \frac{di'}{dt}=-\frac{i'}{Cf'(i)}
+\end{equation}
+Se f'(i) è lineare a tratti, la f'(i) sarà una costate (assumerà un valore diverso in ognuna delle regioni di funzionamento).\\
+Inoltre $f'(i)$, oltre ad essere una costante, è la derivata di v fatta rispetto ad i, quindi una resistenza ($R\uparrow$ e $R\downarrow$ entrambe positive e con le frecce per discriminare il tratto che si sta percorrendo.)\\
+Avrò quindi 2 equazioni differenziali:
+\begin{equation}
+    \frac{di'}{dt}=-\frac{i'}{CR\uparrow}
+\end{equation}
+\begin{equation}
+    \frac{di'}{dt}=-\frac{i'}{CR\downarrow}
+\end{equation}
+$R\uparrow$ e $R\downarrow$ sono l'accelerazione della corrente.
+La soluzione di queste 2 equazioni è:
+\begin{equation}
+    i'(t)=i(0)(e^(-t/(CR\updownarrow)))
+\end{equation}
+\begin{equation}
+    i(t)=(i(0)-I_{0})e^(-t/(CR\updownarrow))+I_{0}
+\end{equation}
+Dalla quale ricavo:
+\begin{equation}
+    v=R\updownarrow i(t)
+\end{equation}
+$i(0)$ sarà alternativamente $i_{22}$ o $i_{11}$ e le traiettorie saranno valide fino al raggiungimento dei valori $i_{21}$ e $i_{12}$.
 \newpage
 \section{Stadi di Uscita}
-<<<<<<< HEAD:Approfondimenti EA/main.tex
-=======
-
-\textbf{Classe A - Push Pull}\\
-Al posto del generatore di corrente ci metto 2 transinstor complementari, npn e pnp.\\
-$V_{BB}$ è una tensione costante DC \\
-Facendo la KVL ottengo:\\
-\begin{equation}
-    v_{BE}+v_{EB}=V_{BB}
-\end{equation}
-Dal momento che la somma è costante, se aumento $v_{BE}$, dovrò diminuire $v_{EB}$ e viceversa.\\
-Facendo ora i piccoli segnali, ottengo: \\
-\begin{equation}
-    v_{be}+v_{eb}=0
-\end{equation}
-Quindi se la corrente di collettore, aumenta, perchè aumenta la $v_{BE}$, diminuirà la $v_{EB}$. Quindi le due correnti procedono in opposizione di fase, entrambe con un valor medio sempre diverso da 0 !!! (vedi figura)\\
-Se mi vado a calcolare il rendimento, sarà uguale a quello di prima; cambierà il rendimento massimo.\\
-\begin{equation}
-    \eta=\frac{\hat{v_{O}}^2}{2R_{L}}\frac{1}{2V_{DD}I_{C}}
-\end{equation}
-Analizzando il nodo, otterrò $i_{L}(t)=i_{C_{n}}-i_{C_{p}}$, ma come ampiezza, otterrò la somma delle 2 ampiezze: 
-\begin{equation}
-    \hat{i_{L}}=\hat{i_{C_{n}}}+\hat{i_{C_{p}}}=2\hat{i_{C}}
-\end{equation}
-\begin{equation}
-    \hat{v_{O}}=\hat{i_{L}}R_{L}=2\hat{i_{C}}R_{L}
-\end{equation}
-La minima $I_{C}$ necessaria al mantenimento del transistor nella regione attiva dovrà essere:
-\begin{equation}
-    I_{C}=\hat{i_{C}}
-\end{equation}
-Sostituendo l'equazione trovata prima, ottengo:
-\begin{equation}
-    I_{C}=\hat{i_{C}}=\frac{V_{DD}}{2R_{L}}
-\end{equation}
-Mi basta sostituire e il risultato sara che $ \eta=50\% $.
-\begin{center}
-    \includegraphics[scale=0.6]{Exit.png}
-\end{center}
->>>>>>> 3928d4e5387893a5172a57f83874a1cea720042d:EA.tex
-
 \textbf{Classe A - Push Pull}\\
 Al posto del generatore di corrente ci metto 2 transinstor complementari, npn e pnp.\\
 $V_{BB}$ è una tensione costante DC \\
