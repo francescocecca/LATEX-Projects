@@ -4,7 +4,7 @@ In questo modo basta compliare ed il pdf è pronto per essere scaricato.
 
 **FILE IN QUESTA CARTELLA**
 
-**Approfondimenti EA** 
+**Elettronica Analogica** 
 
 Sono presenti alcuni approfondimenti di argomenti trattati con superficialità sul libro "Elettronica Analogica - Dispense del corso".
 
