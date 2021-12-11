@@ -5,9 +5,11 @@ In questo modo basta compliare ed il pdf è pronto per essere scaricato.
 **FILE IN QUESTA CARTELLA**
 
 **Approfondimenti EA** 
+
 Sono presenti alcuni approfondimenti di argomenti trattati con superficialità sul libro "Elettronica Analogica - Dispense del corso".
 
 **Misure Elettroniche** (IN AGGIONRAMENTO)
+
 E' presente una sintesi del corso. In futuro verranno aggiunte anche le domande tipiche d'esame.
 
 
