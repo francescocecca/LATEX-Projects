@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage[a4paper]{geometry}
 \usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{caption}
 
 \title{Misure Elettroniche}
 \author{Francesco Pio Cecca}
@@ -133,40 +135,61 @@ dipendenza dalla temperatura (manganina, evanhom, karma).
     \item Oscillatore a rete RC
 \end{itemize}
 \subsection{Incertezza di misura}
-\textbf{Incertezza della misura UNI4546}: intorno limitato del valore di un parametro, 
+\textbf{Incertezza della misura (norma UNI4546)}: intorno limitato del valore di un parametro, 
 corrispondente agli elementi della fascia di valore individuata dalla misurazione. \\
 L'incertezza di una misura finita è un intorno simmetrico del valore e si indica con un 
-numero + i associato alla stessa unità di misura usata per esso (valore), o con altra notazione 
-dalla quale questo numero può essere ricavato. L’incertezza di una misura è pari a 2i.\\ \\
+numero $\pm$ i associato alla stessa unità di misura usata per esso (valore), o con altra notazione 
+dalla quale questo numero può essere ricavato. L’incertezza di una misura è pari a 2i.\\\\
+Nell'esempio, la misura è uno qualunque tra 296K e 298K:\\\\
+\begin{center}
+    \includegraphics[scale=0.9]{Esempio Incertezza.png}
+\end{center}
 \textbf{Incertezza assoluta}: rappresenta l'ampiezza dell'intervallo centrato sul valore indicato g entro cui 
 si considera compreso il valore del misurando.\\ Viene indicata col simbolo $\Delta g$ ed è dotata di 
 dimensioni omogenee alla grandezza sotto misura: 
 \begin{equation}
     \Delta g=\pm i
 \end{equation}
-\textbf{Incertezza relativa}: rappresenta il rapporto fra i valori dell'incertezza assoluta $\Delta g$ e del valore del 
-parametro.\\ È adimensionale e viene indicata con:
+\textbf{Incertezza relativa}: rappresenta il rapporto fra l'incertezza assoluta $\Delta g$ e il valore indicato dallo strumento $g$.\\ È adimensionale (ovvio) e viene indicata con:
 \begin{equation}
     \frac{\Delta g}{g}=\pm \frac{i}{g}
 \end{equation}
 \textbf{Incertezza percentuale}: valore dell'incertezza relativa moltiplicato per 100. \\ \\
+\textbf{Incertezza relativa ppm}: valore dell'incertezza relativa moltiplicato per 1000000. \\ \\
 \textbf{Cause della incertezza}:
 \begin{itemize}
-    \item incertezza del campione utilizzato 
-    \item l’imprecisione costruttive dello strumento usato per eseguire il rapporto fra il parametro 
+    \item Incertezza e deriva termica del campione utilizzato.\\
+    Devo materializzare un'unità di misura, ma il dispositivo che lo fa, la meterializza in modo inperfetto (un po' più grande/picccola)
+    \item Imprecisioni costruttivre dello strumento usato per eseguire il rapporto fra il parametro. \\
+    Approssimazioni per effetto delle tolleranze costruttive degli strumenti utilizzati.
 incognito ed il campione 
-    \item la perturbazione allo stato del sistema apportato dallo strumento
-    \item i disturbi e i rumori che si sovrappongono al misurando. 
-Le prime 3 sono cause sistematiche, l’ultima è una causa aleatoria. 
+    \item La perturbazione allo stato del sistema apportato dallo strumento.\\
+    Inserire lo strumento di misura in un sistema per valutare un parametro, altera lo stato del sistema, contribuendo ad ottenere un valere diverso da quello che ci sarebbe dovuto essere se lo strumento non avesse perturbato lo stato del sistema.
+    \item i disturbi e i rumori che si sovrappongono al misurando.
 \end{itemize}
-Per ridurre l'incertezza possiamo utilizzare diversi procedimenti, a seconda del tipo di causa: 
+Le prime 3 sono cause sistematiche, cioè che si ripetono tutte le volte ogni volta che ripeto la misura, l’ultima è una causa aleatoria, cioè che non si ripetono allo stesso modo ogni volta che ripeto la misura.\\\\
+Per ridurre l'incertezza delle cause aleatorie la soluzione è fare più misure: devo quindi
+fare la media dei risultati e prendere il valore della media come risultato della misurazione.\\\\
+Sulle cause sistematiche, la media non ha effetto perchè gli effetti si ripetono identicamente ogni volta che ripeto la misura !!! \\
+Per ridurre l'incertezza sistematica posso utilizzare diversi procedimenti, a seconda del tipo di causa: 
 \begin{itemize}
-    \item tarature periodiche dello strumento (per errori sistematici) 
-    \item non eseguire misure durante il riscaldamento degli strumenti
-    \item eseguire una media di più misurazioni
-    \item tenere conto della perturbazione dello stato del sistema vedendo i parametri di 
+    \item Periodicamente effettuare la taratura dello strumento
+    \item Non eseguire misure durante il riscaldamento degli strumenti\\
+    Gli strumenti sono taranti nel momento in cui hanno raggiunto una situazione di regime termiche (non devo fare la lettura durante i primi secondi che seguono l'accensione)
+    \item Tenere conto della perturbazione dello stato del sistema vedendo i parametri di 
 quest’ultimo e dello strumento.
 \end{itemize}
+\textbf{Cifre significative } \\
+$g = 123,45689$ volt $\Delta g = \pm 0,002$ volt \\
+L'incertezza assoluta è dunque 0,004 volt (4mV), pertanto si ha $123,455 V < g < 1234,459 V$  
+\begin{center}
+    \includegraphics[scale=0.9]{Cifre Significative.png}
+\end{center}
+Le cifre significative del valore di una misura sono tutte quelle “certe” e la prima “incerta".\\\\
+\textbf{Concetto di digit}\\
+Il digit può essere definito come l'ultima cifra significativa (LSD).
+Lo comprendo con un esempio:\\
+Se il voltmetro mi da come risultato 1.350V ed ho come incertezza $\Delta G \pm (1\% $lettura $ + 2$ digit), significa che dovrò aggiungere 2 mV all'$1\%$ della lettura.\\\\
 \subsection{Propagazione dell'incertezza nelle misure indirette}
 Quando non è possibile misurare direttamente il parametro di cui si cerca la misura, la 
 misurazione si ottiene attraverso la misurazione di altri parametri dai quali il misurando dipende 
@@ -181,14 +204,17 @@ in corrispondenza del valore misurato (indicato con il pedice 0) di a:
 \end{equation}
 Per individuare l'incertezza della misura indiretta si può utilizzare lo sviluppo in serie della 
 funzione f sostituendo all'incremento della variabile indipendente il valore della sua 
-incertezza assoluta.\\ Se l’incertezza assoluta ha un valore basso tale da poter essere 
-trascurato e il valore della derivata prima della f in a0 non è nullo, allora si può 
+incertezza assoluta.\\ Se l’incertezza assoluta $\Delta g$ ha un valore basso tale da poter essere 
+trascurato e il valore della derivata prima della f in $a_{0}$ non è nullo, allora si può 
 approssimare utilizzando la forma linearizzata:
 \begin{equation}
-    \Delta g \cong \frac{df(a)}{da}\vert_{a=a_{0}}\Delta a
+    \Delta g \cong \left| \frac{df(a)}{da}\vert_{a=a_{0}} \right| \Delta a
 \end{equation}
+Perchè la prendo in modulo? Perchè l'incertezza assoluta è l'ampiezza dell'intervallo, che è sempre positiva !!!
+\newpage
+\noindent
 \textbf{Funzione di due o più variabili }\\
-Se il legame fra l’incognita g e le grandezze a e b viene epresso dalla generica funzione f 
+Se il legame fra l’incognita g e le grandezze a e b viene espresso dalla generica funzione f 
 (g=f(a,b)), il valore del misurando si ottiene calcolando il valore della funzione in 
 corrispondenza dei valori misurati (indicati col pedice 0) delle due grandezze a e b
 \begin{equation}
@@ -198,11 +224,11 @@ Anche in questo caso, si può individuare l'incertezza attraverso lo sviluppo in
 funzione, tenendo conto di 2 ipotesi restrittive: 
 \begin{enumerate}
     \item Le incertezze di a e b non sono correlate 
-    \item Le incertezze hanno valore talmente piccolo da poter essere trattate come 
+    \item Le incertezze $\Delta a$ e $\Delta b$ hanno valore talmente piccolo da poter essere trattate come 
 infinitesimi 
 \end{enumerate}
 L'incertezza assoluta può essere ricavata dallo sviluppo in serie della funzione f(a,b) 
-nell’intorno del punto (a0, bO) in cui gli incrementi delle variabili a e b vengono sostituiti 
+nell’intorno del punto ($a_{0}, b_{0}$) in cui gli incrementi delle variabili a e b vengono sostituiti 
 dalle rispettive incertezze assolute e tutti i termini vengono presi col segno positivo.\\ Se 
 non si annullano le derivate parziali prime, la espressione della incertezza può essere 
 troncata ai termini del primo ordine approssimando la funzione con la sua forma 
@@ -222,28 +248,28 @@ linearizzata:
 \end{equation}
 \begin{equation}
     g=\frac{a}{b} \Rightarrow \Delta g = \pm |\frac{\Delta a}{a}|+|\frac{\Delta b}{b}|
-\end{equation}
-\textbf{Cifre significative } \\
-$g = 123,45689$ volt $\Delta g = \pm 0,002$ volt \\
-L'incertezza assoluta è dunque 0,004 volt (4mV), pertanto si ha $123,455 V < g < 1234,459 V$  
-\begin{center}
-    \includegraphics[scale=0.9]{Cifre Significative.png}
-\end{center}
-Le cifre significative del valore di una misura sono tutte quelle “certe” e la prima “incerta".\\\\
+\end{equation}\\
 \textbf{Errori di perturbazione e di consumo }\\
 Ad un esame superficiale si potrebbe pensare che il circuito che descrive la misurazione della 
-tensione di un segnale sia il seguente:
-\begin{center}
-    \includegraphics[scale=0.9]{Circuito Misurazione Tensione 1.png}
-\end{center}
+tensione di un segnale sia come quello in Figura \ref{fig:Circuito Misurazione Tensione} (a).\\
 In realtà il misurando viene alterato per la presenza dello strumento: lo schema che rappresenta 
-correttamente tale fenomeno vede l'uso del generatore eq. di Thevenin del segnale e la presenza 
-esplicita della resistenza di ingresso (non infinita) del voltmetro. 
-\begin{center}
-    \includegraphics[scale=0.9]{Circuito Misurazione Tensione 2.png}
-\end{center}
-Risolvendo lo studio teorico del circuito si ottiene l’espressione dell’alterazione inteodotta sia in 
-termini assoluti, sia in termini relativi a V. \\
-L’alterazione introdotta per la presenza dello strumento viene chiamata errore di perturbazione o 
-errore di consumo. L'errore di consumo diminuisce all'aumentare del rapporto Rv / Rg.
+correttamente tale fenomeno vede l'uso del generatore eq. di Thevenin del segnale e la presenza esplicita della resistenza di ingresso (non infinita) del voltmetro (Figura \ref{fig:Circuito Misurazione Tensione} (b))\\
+\begin{figure}
+     \begin{subfigure}[]{}
+         \centering
+         \includegraphics[scale=0.66]{Circuito Misurazione Tensione 1.png}
+         \label{fig:CircuitoMisurazioneTensione}
+     \end{subfigure}
+     \hfill
+      \begin{subfigure}[]{}
+         \centering
+         \includegraphics[scale=0.63]{Circuito Misurazione Tensione 2.png}
+         \label{fig:CircuitoMisurazioneTensionee}
+     \end{subfigure}
+     \caption{Circuito misurazione tensione ideale e reale}
+     \label{fig:Circuito Misurazione Tensione}
+\end{figure}
+Risolvendo lo studio teorico del circuito si ottiene l’espressione dell’alterazione inteodotta sia in termini assoluti, sia in termini relativi a V. \\
+L’alterazione introdotta per la presenza dello strumento viene chiamata errore di perturbazione o errore di consumo. L'errore di consumo diminuisce all'aumentare del rapporto $\frac{R_{v}}{R_{g}}$.\\
+
 \end{document}
