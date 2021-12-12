@@ -10,6 +10,8 @@ Sono presenti alcuni approfondimenti di argomenti trattati con superficialità s
 
 **Misure Elettroniche** (IN AGGIONRAMENTO)
 
-E' presente una sintesi del corso. In futuro verranno aggiunte anche le domande tipiche d'esame.
+E' presente una sintesi del corso. 
+Con quanto scritto è possibile rispondere alle prime 2 domande d'esame su 7 totali .
+
 
 
