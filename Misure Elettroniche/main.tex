@@ -3,6 +3,8 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{caption}
+\usepackage{hyperref}
+\usepackage{amsmath}
 
 \title{Misure Elettroniche}
 \author{Francesco Pio Cecca}
@@ -257,13 +259,13 @@ correttamente tale fenomeno vede l'uso del generatore eq. di Thevenin del segnal
 \begin{figure}
      \begin{subfigure}[]{}
          \centering
-         \includegraphics[scale=0.66]{Circuito Misurazione Tensione 1.png}
+         \includegraphics[scale=0.67]{Circuito Misurazione Tensione 1.png}
          \label{fig:CircuitoMisurazioneTensione}
      \end{subfigure}
      \hfill
       \begin{subfigure}[]{}
          \centering
-         \includegraphics[scale=0.63]{Circuito Misurazione Tensione 2.png}
+         \includegraphics[scale=0.67]{Circuito Misurazione Tensione 2.png}
          \label{fig:CircuitoMisurazioneTensionee}
      \end{subfigure}
      \caption{Circuito misurazione tensione ideale e reale}
@@ -271,5 +273,222 @@ correttamente tale fenomeno vede l'uso del generatore eq. di Thevenin del segnal
 \end{figure}
 Risolvendo lo studio teorico del circuito si ottiene l’espressione dell’alterazione inteodotta sia in termini assoluti, sia in termini relativi a V. \\
 L’alterazione introdotta per la presenza dello strumento viene chiamata errore di perturbazione o errore di consumo. L'errore di consumo diminuisce all'aumentare del rapporto $\frac{R_{v}}{R_{g}}$.\\
+\newpage
+\section{Conversione AD}
+\textbf{Segnale analogico}: funzione del tempo che è definita per ogni valore del tempo (cioè continua nel 
+dominio) e continua. \\\\
+\textbf{Segnale digitale}: funzione di “tempo discreta” e “quantizzata”: dunque risulta definita solamente 
+in un insieme numerabile di istanti equispaziati e dotata di un codominio costituito da un insieme 
+discreto di valori (non passa da una valore all'altro attraversando tutti i valori intermedi). \\\\
+I segnali digitali hanno una maggiore reiezione ai disturbi rispetto ai segnali analogici (potendo 
+quest'ultimi assumere infiniti valori), possono essere elaborati più facilmente dei segnali analogici 
+e possono essere registrati in maniera più fedele e stabile nei segnali analogici. \\\\
+La conversione A/D richiede 3 fasi successive: 
+\begin{enumerate}
+    \item Campionamento - discretizzazione del tempo 
+    \item Quantizzazione — discretizzazione dell’ampiezza 
+    \item Codifica — uso di “parole” binarie per esprimere il valore del segnale
+\end{enumerate}
+\textbf{Campionamento}\\
+Campionare un segnale analogico significa prelevare da questo una successione temporale di 
+valori costituita dalla successione dei valori istantanei assunti dal segnale in corrispondenza di 
+particolari istanti, detti "istanti di campionamento". \\
+L'intervallo che separa due successivi istanti di 
+campionamento viene chiamato "\textbf{periodo di campionamento}" $T_{c}$ ed il suo reciproco, indicato 
+come $f_{c}$, è la "\textbf{frequenza di camp.}". \\ Si potrebbe essere indotti a pensare 
+che il campionamento provochi una riduzione del contenuto informativo del segnale analogico in 
+quanto si perde l'informazione sul valore assunto dal segnale in tutti gli istanti diversi da quelli di 
+campionamento. \\
+Il teorema del campionamento ci dice invece che, in condizioni ideali, la esecuzione del 
+campionamento non provoca perdita di informazione. \\\\
+\underline{Teorema del campionamento o di Shannon}: se la trasformata di Fourier di un segnale a(t) è nulla per tutte le frequenze maggiori di una data frequenza $f_{max}$ allora il segnale continuo a(t) può 
+essere ricavato dalla conoscenza dei suoi valori campionati (non c'è perdita d'informazione).\\ Affinché la ricostruzione sia possibile è 
+indispensabile che il campionamento permetta l'acquisizione di infiniti campioni separati l'un 
+l’altro da intervalli che devono avere durata inferiore al valore $\frac{1}{2}f_{max}$.\\ 
+Campionare dunque significa individuare la successione di valori istantanei (ordinate) assunti da f(t) negli 
+istanti di campionamento equispaziati $g(t_{0}+nT_{C})$. \\
+Dalla successione ricavata mediante il teorema del campionamento, è possibile ricavare univocamente il segnale analogico g(t) se questo ha: 
+\begin{itemize}
+    \item Banda limitata 
+    \item $T_{C}$ minore di un valore di un valore prefissato che dipende da f(t): $f_{c} > 2$W (frequenza di Nyquist)
+    \item Se si acquisiscono infiniti campioni (problemone)
+\end{itemize}
+Un valore troppo alto di $T_{c}$ o troppo basso di $f_{c}$, provoca il fenomeno dell’alis , cioè la 
+sovrapposizione delle repliche dello spettro originale nel segnale campionato: in questo caso non è possibile ricavare il segnale originale avendo a disposizione quello campionato.
+\newpage
+\noindent
+\textbf{Quantizzazione}\\
+Per quantizzare il segnale devo prima definire il "campo di misura", cioè un intervallo di valori entro cui il segnale deve 
+mantenersi per permettere una corretta quantizzazione, seguendo due alternative: 
+\begin{itemize}
+    \item Campo unipolare con estremo inferiore nullo ed estremo superiore $E_{c}$ 
+    \item Campo bipolare con estremo inferiore -$E_{c}$ ed estremo superiore +$E_{c} (simmetrici)$ 
+\end{itemize}
+Definito il campo di misura lo si deve suddividere in un numero arbitrario, ma finito, di intervalli 
+contigui, secondo due alternative: 
+\begin{itemize}
+    \item Suddivisione in intervalli di ampiezza costante: quantizzazione uniforme 
+    \item Suddivisione in intervalli di ampiezze diverse: quantizzazione non uniforme
+\end{itemize}
+Si individua poi il valore centrale di ciascun intervallo in cui è stato suddiviso il campo di misura e si 
+sostituisce al valore di ciascun campione del segnale campionato $g(t_{0}+nT_{c})$, il valore centrale dell'intervallo in 
+cui esso si trova. \\\\
+\underline{Incertezza di quantizzazione}: La alterazione che al massimo può essere apportata al valore di 
+ciascun campione è pari alla semi-ampiezza dell'intervallo entro cui il valore del campione 
+(analogico) si trova.\\ Se si indica con il simbolo $e$ l'ampiezza dell'intervallo, l'incertezza introdotta 
+dalla fase di quantizzazione (chiamata "incertezza di quantizzazione") risulta 
+\begin{equation}
+    \Delta g= \frac{2E_{c}}{2N}=\frac{E_{c}}{N}
+\end{equation}\\
+E' evidente che la incertezza di quantizzazione può essere ridotta agendo sia sull'ampiezza del 
+campo di misura, sia sul numero degli intervalli in cui questo viene suddiviso con quantizzazione 
+uniforme.\\
+Più gli intervalli sono piccoli, minore è la perdita d'informazione, quindi la soluzione sarebbe dividere il campo di misura in un numero estremamente elevato di intervalli.\\
+Nel caso ciò non è possibile, si praticano quantizzazioni non uniformi basate sullo studio 
+statistico dell'andamento del segnale. \\\\
+\underline{Schemi pratici per la quantizzazione uniforme}
+\begin{itemize}
+    \item Quantizzazione non silenziata: il campo è suddiviso in un numero pari di intervalli di uguale 
+ampiezza dei quali una coppia (quella centrale) abbia come estremo comune lo zero.\\ In 
+questa forma si ha un numero pari di intervalli, l'effettivo campo di misura si estende da - 
+$E_{c}$ a +$E_{c}$ e l'ampiezza del singolo intervallo è fornito dal rapporto tra l'ampiezza del campo 
+di misura (+2$E_{c}$) ed il numero N di intervalli creati. \\
+Il principale difetto sta nel fatto che un campione prelevato dal segnale che ha valore nullo 
+verrebbe comunque associato sempre ad un valore non nullo positivo o negativo in 
+funzione del contributo del rumore e dall’offset dei dispositivi usati e quindi verrebbe quantizzato in maniera errata.
+    \item Quantizzazione silenziata: il campo è suddiviso in un numero dispari di intervalli, tutti di 
+uguale ampiezza salvo i due stremi e con un intervallo centrato sullo zero. \\Questa 
+soluzione permette di avere un intervallo “centrato” sullo zero, pertanto tutti quei 
+campioni prelevati dal segnale di ingresso a cui si sovrappone un rumore compreso 
+nell'intervallo centrato appunto sullo zero, verranno associati a 0. \\
+\end{itemize}
+\textbf{Codifica}\\
+La fase di codifica associa a ciascuno dei valori quantici corrispondenti ai centri degli N intervalli in cui è stato suddiviso il campo di misura una “parola” binaria a M bit.\\
+È necessario che ciascuno degli N  valori quantici disponga di una “sua” parola, quindi non ci devono essere codifiche doppie pertanto è richiesto che:
+\begin{equation}
+   N\leq 2^M
+\end{equation}
+La scelta della strategia di corrispondenza fra la successione degli intervalli e la successione delle parole binarie è dettata da considerazioni riguardanti le codifiche più diffuse nei sistemi a microprocessore (binario puro, binario con offset, binario con offset complementato ad uno, ecc.)\\
+Quello che mi interessa è come fare una \textbf{mappatura ottimale per una quantizzazione silenziata} (dato che la non silenziata è un generatore di rumore) e  avendo necessità di fare un numero dispari di intervalli, perdo uno degli elementi della mia codifica:
+\begin{equation}
+    N=2^M-1
+\end{equation}
+e quindi ci sarà un lieve incremento nella incertezza di quantizzazione perchè non sfrutto a pieno tutti i bit che uso nella mia parola, ma perdo un intervallo:
+\begin{equation}
+    e=\frac{2E_{c}}{N}
+\end{equation}
+Come posso risolvere questo problema? C'è un trucco: parto da una quantizzazione uniforme non silenziata e poi traslo di mezza ampiezza di un intervallo, mezza frontiera in basso !!!
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.8]{Sample-Hold.png}
+    \caption{Circuito Sample-Hold}
+    \label{fig:my_label}
+\end{figure}
+\subsection{Conversione AD Reale: Dispositivi}
+\subsubsection{Campionatore: Sample\&Hold}
+Il circuito sample and hold (abbreviato S\&H) è un campionatore utilizzato come interfaccia tra un 
+segnale analogico che varia velocemente nel tempo e un dispositivo successivo, spesso un 
+convertitore analogico-digitale (ADC, analog to digital converter).\\
+\newpage
+\noindent
+I componenti principali di un S\&H sono:
+\begin{itemize}
+    \item Due OPAMP connessi come "inseguitore di tensione" (guadagno unitario)
+    \item Un MOSFET che opera come "interruttore" 
+    \item Un C che opera come "memoria"
+\end{itemize}
+\begin{figure}
+\begin{subfigure}[]{}
+   \centering
+    \includegraphics[scale=0.5]{S&H Ideale.png}
+    \label{fig:S&H Funzionamento ideale}
+\end{subfigure}
+\hfill
+\begin{subfigure}[]{}
+   \centering
+   \includegraphics[scale=0.5]{Acquisition Time.png}
+   \label{fig:S&H Funzionamento Reale}
+\end{subfigure}
+\hfill
+\begin{subfigure}
+   \centering
+   \includegraphics[scale=0.5]{Droop Rate.png}
+   \label{fig:Droop Rate}
+\end{subfigure}
+        \caption{Funzionamento S\&H}
+        \label{fig:Sample}
+\end{figure}
+L'effetto di questo circuito è di 
+mantenere il valore analogico costante per il tempo necessario al convertitore o ad altri circuiti 
+successivi per compiere delle operazioni sul segnale. \\
+Nella maggior parte dei circuiti si utilizza un condensatore a bassa capacità C per conservare la 
+tensione analogica, più un interruttore (costituito solitamente da un MOSFET, che ha una piccola 
+resistenza di ingresso intrinseca R), il quale connette e disconnette il condensatore all'ingresso 
+analogico.\\
+Al source del transistor è collegato un buffer che mantiene l'impedenza di ingresso 
+globale elevata.\\
+La procedura di utilizzo consiste nell'iniettare nel gate del transistor un segnale 
+impulsivo, permettendo così al source del MOSFET di raggiungere (in modo pressoché istantaneo, 
+date le grandezze del partitore RC) la tensione del generatore in ingresso.\\
+Nell'istante successivo all'immissione dell'impulso, l'interruttore si chiude, perciò il condensatore non si scarica, 
+"memorizzando" così il segnale di ingresso.\\
+Ripetendo tale procedura più volte, si ottiene in uscita 
+una rappresentazione "a scalino" della tensione di ingresso.\\
+La frequenza con cui l'interruttore 
+viene aperto o chiuso è la frequenza di campionamento del sistema.
+Quindi idealmente, un S\&H si comporta come in FIG \ref{fig:Sample}(a)\\\\
+\textbf{Comportamento Reale: Acquisition Time}\\
+Vado ora a vedere il comportamento reale inserendo il concetto di "Acquisition Time": una volta finita la fase di mantenimento (HOLD) attivo l'inseguimento rendendo conduttore il MOSFET, ma il MOSFET non ha una R nulla, di conseguenza le cariche che devono arrivare sul C per far su che la tensione faccia un salto, non possono arrivare in un tempo nullo, ci sarà un transitorio di carica!!! (FIG \ref{fig:Sample}(b))\\\\
+\textbf{Comportamento Reale: Ricombinazione delle Cariche}\\
+A causa  della resistenza d'interdizione del MOSFET, dalle $R_{IN}$ dell'OPAMP, che nel caso reale sono diverse da zero, durante la fase di HOLD, la tensione ai capi del condensatore non è costante, dato che il C si scarica sulla $R_{P}$ (che schematizza la resistenza del MOSFET e dell'OPAMP) con legge esponenziale.\\
+La misura della velocità di scarica a avviene tramite il DROOP RATE, che è definito come la tangente alla curva di scarica del condensatore. (FIG \ref{fig:Sample} (c))
+\begin{equation}
+    tg(\alpha)=\text{DROOP RATE} 
+\end{equation}
+\newpage
+\noindent
+\textbf{Comportamento Reale: Droop Voltage}\\
+Dato che la tensione $V_{OUT}$ non è costante durante la fase di HOLD, è possibile definire la variazione a causa della scarica del condensatore attraverso il DROOP VOLTAGE.\\
+Dato che maggiore è il valore di C e minore sarà rilevante la perditsa di carica durante la fase di scarica, si può dire che il DROOP sia inversamente proporzionale al valore della capacità:
+\begin{equation}
+   \text{DROOP}=\frac{1}{C} \text{   (anche uguale alla banda passante)}
+\end{equation}
+Il DROOP è accettabile fintanto che risulta la metà dell'ampiezza degli intervalli di quantizzazione, pertanto è possibile dare un'espressione approssimata del DROOP VOLTAGE:
+\begin{equation}
+    \text{DROOP VOLTAGE}=\text{DROOP RATE}(t-t_{0})
+\end{equation}
+\textbf{Caso Reale: Sottrazione delle Cariche}\\
+Quando il dispositivo passa dalla fase di TRACK, alla fase di HOLD, la polarità tra Gate e Source deve essere invertita, il che si traduce nel dover invertire anche la polarità del condensatore parassita.\\
+Affinchè la piastra superiore sia ad un potenziale più elevato di quella inferiore durante la fase di HOLD, il C parassita ruba cariche positive dal C di memoria e pertanto la $V_{OUT}$ scende leggermente, fornendo un PEDESTAL.\\\\
+\textbf{Come scelgo il valore della capacità per il C di memoria?}\\
+Aumentare C provoca:
+\begin{itemize}
+    \item Diminuzione “droop –rate”  (+)
+    \item Diminuzione “pedestal” (+)
+    \item Aumento “acquisition time” (-)
+    \item Diminuzione frequenza di taglio e banda passante (-)
+\end{itemize}
+\begin{figure}
+\begin{subfigure}
+   \centering
+    \includegraphics[scale=0.59]{Droop Voltage.png}
+    \label{fig:droop Voltage}
+\end{subfigure}
+  \hfill
+  \begin{subfigure}
+     \centering
+    \includegraphics[scale=0.59]{Pedestal Schema.png}
+    \label{fig:pedestal schema}
+  \end{subfigure}
+  \hfill
+ \begin{subfigure}
+    \centering
+    \includegraphics[scale=0.59]{Pedestal Grafico.png}
+    \label{fig:pedestal grafico}
+ \end{subfigure}
+ \caption{Droop Voltage e Pedestal}
+  \label{fig:droop}
+\end{figure}
+\subsubsection{Convertitore AD Flash o "Parallelo"}
 
 \end{document}
