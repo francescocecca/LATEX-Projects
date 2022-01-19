@@ -8,10 +8,8 @@ In questo modo basta compliare ed il pdf è pronto per essere scaricato.
 
 Sono presenti alcuni approfondimenti di argomenti trattati con superficialità sul libro "Elettronica Analogica - Dispense del corso".
 
-**Misure Elettroniche** (IN AGGIONRAMENTO)
+**OOP** (IN AGGIONRAMENTO)
 
-E' presente una sintesi del corso. 
-Con quanto scritto è possibile rispondere alle prime 2 domande d'esame su 7 totali .
-
+Sono presenti alcuni argomenti aggiuntivi al corso di Java, utilizzati nel progetto "Dropbox Analyser"
 
 
