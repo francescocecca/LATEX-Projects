@@ -26,5 +26,6 @@ Prima di analizzarli, è consigliato clonare  **[Dropbox Analyser](https://githu
 **Fisica**
 
 E' stato trattato l'argomento della relatività galileiana, al solo scopo di riuscire a farne gli esercizi per la prova scritta.
+Riferimenti: youmath
 
 
