@@ -7,6 +7,7 @@ I progetti sono openSource, quindi possono essere scaricati e modificati.
 ## **Scaletta dei contenuti** :mag_right:
 * [Elettronica Analogica](#eleana)
 * [OOP](#oop)
+* [Fisica](#fisica)
 
 <a name="eleana"></a>
 **Elettronica Analogica** 
@@ -20,5 +21,10 @@ Sono state aggiunte dimostrazioni rispetto a quelle spiegate dal prof. solo a sc
 Sono presenti alcuni argomenti aggiuntivi al corso di Java, utilizzati nel progetto "Dropbox Analyser".
 Alcuni di questi sono stati molto utili nella semplificazione del progetto.
 Prima di analizzarli, è consigliato clonare  **[Dropbox Analyser](https://github.com/lorenzobartolini00/ProgettoOOP)**, in modo da avere sotto mano degli esempi concreti di ciò che è spiegato.
+
+<a name="fisica"></a>
+**Fisica**
+
+E' stato trattato l'argomento della relatività galileiana, al solo scopo di riuscire a farne gli esercizi per la prova scritta.
 
 
