@@ -8,6 +8,7 @@ I progetti sono openSource, quindi possono essere scaricati e modificati.
 * [Elettronica Analogica](#eleana)
 * [OOP](#oop)
 * [Fisica](#fisica)
+* [Machine Learning](#ml)
 
 <a name="eleana"></a>
 **Elettronica Analogica** 
@@ -27,5 +28,10 @@ Prima di analizzarli, è consigliato clonare  **[Dropbox Analyser](https://githu
 
 E' stato trattato l'argomento della relatività galileiana, al solo scopo di riuscire a comprendere gli esercizi per la prova scritta.
 Riferimenti: youmath
+
+<a name="ml"></a>
+**Machine Learning**
+
+Sono presenti gli appunti relativi alle lectures del corso di Machine Learning (Politechnika Krakowska) - Anno 2023/2024
 
 
