@@ -5,10 +5,17 @@ I progetti sono openSource, quindi possono essere scaricati e modificati.
 </p>
 
 ## **Scaletta dei contenuti** :mag_right:
+* [Computer Network](#cn)
 * [Elettronica Analogica](#eleana)
 * [OOP](#oop)
 * [Fisica](#fisica)
 * [Machine Learning](#ml)
+
+<a name="cn"></a>
+**Computer Network**
+
+Sono presenti gli appunti relativi alle lectures del corso di Computer Network (Politechnika Krakowska) - Anno 2023/2024
+Sono un mix di inglese ed italiano.
 
 <a name="eleana"></a>
 **Elettronica Analogica** 
